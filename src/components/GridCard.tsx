@@ -6,6 +6,7 @@ import React, { ReactElement } from 'react';
 interface Props {
   title: string;
   description: string;
+  image: string;
   onClick: () => void;
 }
 
@@ -16,7 +17,7 @@ function GridCard(props: Props): JSX.Element {
         <CardMedia
           component="img"
           height="140"
-          image="https://picsum.photos/400/300"
+          src={props.image}
           alt="eye image"
         />
         <CardContent>

@@ -1,10 +1,20 @@
-import { Box, Button, Typography } from '@mui/material';
+import {
+  Box, Button, Typography, Dialog, DialogContent, DialogTitle, DialogActions, DialogContentText, TextField,
+} from '@mui/material';
 import React, { ReactElement, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { v4 as uuidv4 } from 'uuid';
 import GridCard from '../../components/GridCard';
+import VideoThumbnail from '../../constants/assets/ezgif-frame-009.jpg';
 import GridList, { Card } from '../../components/GridList';
 
 function Home(): JSX.Element {
+  const navigate = useNavigate();
   const [videos, setVideos] = useState<Card[]>([]);
+
+  const [openUpload, setOpenUpload] = useState(false);
+  const [newUploadTitle, setNewUploadTitle] = useState('');
+  const [newUploadDescription, setNewUploadDescription] = useState('');
 
   return (
     <Box
@@ -46,18 +56,73 @@ function Home(): JSX.Element {
           variant="outlined"
           color="primary"
           onClick={() => {
-            const newCard = {
-              title: 'Example',
-              description: 'This is a description',
-              onClick: () => { console.log('clicked'); },
-            };
-            setVideos([...videos, newCard]);
+            setOpenUpload(true);
           }}
         >
           Upload
         </Button>
       </Box>
       <GridList cards={videos} />
+      <Dialog open={openUpload} onClose={() => setOpenUpload(false)}>
+        <DialogTitle>Upload</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Enter a title and description for your video.
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="title"
+            label="Title"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={newUploadTitle}
+            onChange={(event) => {
+              setNewUploadTitle(event.target.value);
+            }}
+          />
+          <TextField
+            autoFocus
+            margin="dense"
+            id="description"
+            label="Description"
+            type="text"
+            fullWidth
+            variant="standard"
+            value={newUploadDescription}
+            onChange={(event) => {
+              setNewUploadDescription(event.target.value);
+            }}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => {
+            setOpenUpload(false);
+            setNewUploadTitle('');
+            setNewUploadDescription('');
+          }}
+          >
+            Cancel
+          </Button>
+          <Button onClick={() => {
+            setOpenUpload(false);
+            const newCard = {
+              title: newUploadTitle,
+              description: newUploadDescription,
+              onClick: () => { navigate(`/videos/${newUploadTitle}`); },
+              image: VideoThumbnail,
+            };
+            setVideos([...videos, newCard]);
+            setNewUploadTitle('');
+            setNewUploadDescription('');
+          }}
+          >
+            Upload
+          </Button>
+        </DialogActions>
+
+      </Dialog>
     </Box>
   );
 }

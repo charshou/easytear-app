@@ -5,6 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './constants/theme';
 import Home from './pages/Home/Home';
 import logo from './logo.svg';
+import Video from './pages/Video/Video';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/videos/:id" element={<Video />} />
         </Routes>
       </BrowserRouter>
     </ThemeProvider>

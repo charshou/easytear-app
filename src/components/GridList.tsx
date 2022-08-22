@@ -16,6 +16,7 @@ const CustomList = styled('ul')({
 export interface Card {
   onClick: () => void;
   title: string;
+  image: string;
   description: string;
 }
 
@@ -28,6 +29,7 @@ function GridList(props: Props): JSX.Element {
     <CustomList>
       {props.cards.map((card) => (
         <GridCard
+          image={card.image}
           title={card.title}
           description={card.description}
           onClick={card.onClick}
