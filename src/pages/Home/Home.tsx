@@ -1,20 +1,40 @@
 import {
-  Box, Button, Typography, Dialog, DialogContent, DialogTitle, DialogActions, DialogContentText, TextField,
+  Box, Button, Typography, Dialog, DialogContent, DialogTitle, DialogActions, DialogContentText, TextField, CircularProgress,
 } from '@mui/material';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import GridCard from '../../components/GridCard';
 import VideoThumbnail from '../../constants/assets/ezgif-frame-009.jpg';
 import GridList, { Card } from '../../components/GridList';
+import { getVideos, uploadVideo } from '../../api/videos';
 
 function Home(): JSX.Element {
   const navigate = useNavigate();
   const [videos, setVideos] = useState<Card[]>([]);
 
+  const refresh = () => {
+    getVideos()
+      .then((response) => response.data)
+      .then((data) => setVideos(data.videos.map((video) => ({
+        title: video.name,
+        image: `data:image/jpeg;base64,${video.image}`,
+        onClick: () => { navigate(`/videos/${video.name}`); },
+        description: video.description,
+      }))))
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    refresh();
+  }, []);
+
   const [openUpload, setOpenUpload] = useState(false);
   const [newUploadTitle, setNewUploadTitle] = useState('');
   const [newUploadDescription, setNewUploadDescription] = useState('');
+  const [newUploadFile, setNewUploadFile] = useState<File | null>(null);
+
+  const [uploadPending, setUploadPending] = useState(false);
 
   return (
     <Box
@@ -95,6 +115,38 @@ function Home(): JSX.Element {
               setNewUploadDescription(event.target.value);
             }}
           />
+          <Button
+            sx={{
+              marginTop: '30px',
+            }}
+            fullWidth
+            variant="outlined"
+            component="label"
+          >
+            Upload File
+            <input
+              type="file"
+              hidden
+              onChange={(e) => {
+                if (e.target && e.target.files) {
+                  setNewUploadFile(e.target.files[0]);
+                }
+              }}
+            />
+          </Button>
+          {newUploadFile !== null
+            ? (
+              <Typography
+                sx={{
+                  marginTop: '30px',
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                }}
+              >
+                {newUploadFile.name}
+              </Typography>
+            )
+            : null}
         </DialogContent>
         <DialogActions>
           <Button onClick={() => {
@@ -106,19 +158,22 @@ function Home(): JSX.Element {
             Cancel
           </Button>
           <Button onClick={() => {
-            setOpenUpload(false);
-            const newCard = {
-              title: newUploadTitle,
-              description: newUploadDescription,
-              onClick: () => { navigate(`/videos/${newUploadTitle}`); },
-              image: VideoThumbnail,
-            };
-            setVideos([...videos, newCard]);
-            setNewUploadTitle('');
-            setNewUploadDescription('');
+            if (newUploadTitle.length > 0 && newUploadDescription.length > 0 && newUploadFile != null) {
+              setUploadPending(true);
+              uploadVideo(newUploadFile)
+                .catch((error) => console.log(error))
+                .finally(() => {
+                  setUploadPending(false);
+                  setOpenUpload(false);
+                  refresh();
+                  setNewUploadTitle('');
+                  setNewUploadDescription('');
+                  setNewUploadFile(null);
+                });
+            }
           }}
           >
-            Upload
+            {uploadPending ? <CircularProgress size={20} /> : 'Upload'}
           </Button>
         </DialogActions>
 
