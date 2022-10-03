@@ -52,7 +52,7 @@ interface TrackingGroup {
   ssd: Dataset;
 }
 
-type Enhancement = 'sharpened' | 'laplacian' | 'averaged' | 'original';
+type Enhancement = 'sharpened' | 'laplacian' | 'original';
 
 type Tracking = 'none' | 'opt' | 'ssd';
 
@@ -65,6 +65,75 @@ interface EnhancementGroup {
 
 const blinks: EnhancementGroup[] = [
   {
+    sharpened: {
+      none: EyeVideoTracking,
+      opt: {
+        yDisplacement: YDisplacement,
+        yDisplacementFitted: YDisplacementFitted,
+        xDisplacement: XDisplacement,
+        thickness: Thickness,
+        video: EyeVideoTracking,
+      },
+      ssd: {
+        yDisplacement: YDisplacement,
+        yDisplacementFitted: YDisplacementFitted,
+        xDisplacement: XDisplacement,
+        thickness: Thickness,
+        video: EyeVideoTracking,
+      },
+    },
+    laplacian: {
+      none: EyeVideoTracking,
+      opt: {
+        yDisplacement: YDisplacement,
+        yDisplacementFitted: YDisplacementFitted,
+        xDisplacement: XDisplacement,
+        thickness: Thickness,
+        video: EyeVideoTracking,
+      },
+      ssd: {
+        yDisplacement: YDisplacement,
+        yDisplacementFitted: YDisplacementFitted,
+        xDisplacement: XDisplacement,
+        thickness: Thickness,
+        video: EyeVideoTracking,
+      },
+    },
+    averaged: {
+      none: EyeVideoTracking,
+      opt: {
+        yDisplacement: YDisplacement,
+        yDisplacementFitted: YDisplacementFitted,
+        xDisplacement: XDisplacement,
+        thickness: Thickness,
+        video: EyeVideoTracking,
+      },
+      ssd: {
+        yDisplacement: YDisplacement,
+        yDisplacementFitted: YDisplacementFitted,
+        xDisplacement: XDisplacement,
+        thickness: Thickness,
+        video: EyeVideoTracking,
+      },
+    },
+    original: {
+      none: EyeVideoOriginal,
+      opt: {
+        yDisplacement: YDisplacement,
+        yDisplacementFitted: YDisplacementFitted,
+        xDisplacement: XDisplacement,
+        thickness: Thickness,
+        video: EyeVideoTracking,
+      },
+      ssd: {
+        yDisplacement: YDisplacement,
+        yDisplacementFitted: YDisplacementFitted,
+        xDisplacement: XDisplacement,
+        thickness: Thickness,
+        video: EyeVideoTracking,
+      },
+    },
+  }, {
     sharpened: {
       none: EyeVideoTracking,
       opt: {
@@ -210,6 +279,18 @@ function Video(): JSX.Element {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const trackingMap = {
+    none: '',
+    opt: '_OPT',
+    ssd: '_FARNEBACK',
+  };
+
+  const enhancementMap = {
+    sharpened: '_sharpen',
+    laplacian: '_laplacian',
+    original: '',
+  };
+
   const [open, setOpen] = useState(false);
   const [tracking, setTracking] = useState<Tracking>('none');
   const [enhancement, setEnhancement] = useState<Enhancement>('original');
@@ -256,7 +337,6 @@ function Video(): JSX.Element {
           >
             <ToggleButton value="sharpened">Sharpen</ToggleButton>
             <ToggleButton value="laplacian">Laplacian</ToggleButton>
-            <ToggleButton value="averaged">Average Removed</ToggleButton>
             <ToggleButton value="original">Original</ToggleButton>
           </ToggleButtonGroup>
           <IconButton
@@ -269,7 +349,11 @@ function Video(): JSX.Element {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <video src={tracking === 'none' ? blinks[blink][enhancement][tracking] : blinks[blink][enhancement][tracking].video} width="100%" height={tracking === 'none' ? '100%' : '70%'} controls />
+      {`https://d263h71p4msg7r.cloudfront.net/blinks/${id}_blink${blink}${enhancementMap[enhancement] + trackingMap[tracking]}.mp4`}
+      <video key={`https://d263h71p4msg7r.cloudfront.net/blinks/${id}_blink${blink}${enhancementMap[enhancement] + trackingMap[tracking]}.mp4`} controls>
+        <source src={`https://d263h71p4msg7r.cloudfront.net/blinks/${id}_blink${blink}${enhancementMap[enhancement] + trackingMap[tracking]}.mp4`} type="video/mp4" />
+      </video>
+      {/* <video src={tracking === 'none' ? blinks[blink][enhancement][tracking] : blinks[blink][enhancement][tracking].video} width="100%" height={tracking === 'none' ? '100%' : '70%'} controls /> */}
       {tracking !== 'none'
         && (
         <ImageList sx={{ width: '100%' }} cols={Object.entries(blinks[blink][enhancement][tracking]).length - 1}>

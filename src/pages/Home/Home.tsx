@@ -19,7 +19,7 @@ function Home(): JSX.Element {
       .then((data) => setVideos(data.videos.map((video) => ({
         title: video.name,
         image: `data:image/jpeg;base64,${video.image}`,
-        onClick: () => { navigate(`/videos/${video.name}`); },
+        onClick: () => { navigate(`/videos/${video.name.split('.')[0]}`); },
         description: video.description,
       }))))
       .catch((error) => console.log(error));
