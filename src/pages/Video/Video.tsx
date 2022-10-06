@@ -365,6 +365,7 @@ function Video(): JSX.Element {
               />
             </ImageListItem>
           ))}
+          GRAPHS ARE PLACEHOLDERS
         </ImageList>
         )}
       <Drawer
