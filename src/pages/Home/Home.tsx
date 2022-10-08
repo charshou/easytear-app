@@ -22,7 +22,17 @@ function Home(): JSX.Element {
         onClick: () => { navigate(`/videos/${video.name.split('.')[0]}`); },
         description: video.description,
       }))))
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setVideos(
+          [{
+            title: 'OS4-427_3221-OD2-TLL-06222022',
+            image: 'none',
+            onClick: () => { navigate('/videos/OS4-427_3221-OD2-TLL-06222022'); },
+            description: 'sample video',
+          }],
+        );
+        console.log(error);
+      });
   };
 
   useEffect(() => {
