@@ -19,5 +19,8 @@ export const uploadVideo = async (file: File): Promise<AxiosResponse<SuccessResp
   return response;
 }; */
 
-export const getVideos = async (): Promise<GetVideosResponse> => fetch('/videos')
-  .then((response) => response.json());
+export const getVideos = async (): Promise<GetVideosResponse> => {
+  console.log(123);
+  return fetch(`${base}/videos`)
+    .then((response) => response.json());
+};
