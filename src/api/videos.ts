@@ -6,7 +6,7 @@ const base = 'http://127.0.0.1:5000';
 export const uploadVideo = async (file: File): Promise<AxiosResponse<SuccessResponse>> => {
   const formData = new FormData();
   formData.append('file', file);
-  const response = axios.post<SuccessResponse>(`${base}/videos`, formData, {
+  const response = axios.post<SuccessResponse>(`${base}/api/videos`, formData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -21,9 +21,9 @@ export const uploadVideo = async (file: File): Promise<AxiosResponse<SuccessResp
 
 export const getVideos = async (): Promise<GetVideosResponse> => {
   console.log(123);
-  const abc = fetch('/videos')
+  const abc = fetch('/api/videos')
     .then((response) => response.json());
-  const cdf = fetch('/videos')
+  const cdf = fetch('/api/videos')
     .then((r) => r.text());
   console.log(cdf);
   console.log(abc);
