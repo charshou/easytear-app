@@ -14,18 +14,11 @@ export const uploadVideo = async (file: File): Promise<AxiosResponse<SuccessResp
   return response;
 };
 
-/* export const getVideos = async (): Promise<AxiosResponse<GetVideosResponse>> => {
-  const response = axios.get<GetVideosResponse>(`${base}/videos`);
+export const getVideos = async (): Promise<AxiosResponse<GetVideosResponse>> => {
+  const response = axios.get<GetVideosResponse>(`${base}/api/videos`);
   return response;
-}; */
-
-export const getVideos = async (): Promise<GetVideosResponse> => {
-  console.log(123);
-  const abc = fetch('/api/videos')
-    .then((response) => response.json());
-  const cdf = fetch('/api/videos')
-    .then((r) => r.text());
-  console.log(cdf);
-  console.log(abc);
-  return abc;
 };
+
+/* export const getVideos = async (): Promise<GetVideosResponse> => fetch('/api/videos')
+  .then((response) => response.json());
+ */

@@ -15,6 +15,7 @@ function Home(): JSX.Element {
 
   const refresh = () => {
     getVideos()
+      .then((response) => response.data)
       .then((data) => setVideos(data.videos.map((video) => ({
         title: video.name,
         image: `data:image/jpeg;base64,${video.image}`,
