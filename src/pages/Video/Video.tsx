@@ -22,8 +22,6 @@ import React, { useState } from 'react';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { styled } from '@mui/material/styles';
-import EyeVideoTracking from '../../constants/assets/video-tracked.mp4';
-import EyeVideoOriginal from '../../constants/assets/video-original.mp4';
 import YDisplacement from '../../constants/assets/y.png';
 import XDisplacement from '../../constants/assets/x.png';
 import YDisplacementFitted from '../../constants/assets/yfitted.png';
@@ -66,210 +64,210 @@ interface EnhancementGroup {
 const blinks: EnhancementGroup[] = [
   {
     sharpened: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     laplacian: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     averaged: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     original: {
-      none: EyeVideoOriginal,
+      none: 'EyeVideoOriginal',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
   }, {
     sharpened: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     laplacian: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     averaged: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     original: {
-      none: EyeVideoOriginal,
+      none: 'EyeVideoOriginal',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
   },
   {
     sharpened: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     laplacian: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     averaged: {
-      none: EyeVideoTracking,
+      none: 'EyeVideoTracking',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
     original: {
-      none: EyeVideoOriginal,
+      none: 'EyeVideoOriginal',
       opt: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
       ssd: {
         yDisplacement: YDisplacement,
         yDisplacementFitted: YDisplacementFitted,
         xDisplacement: XDisplacement,
         thickness: Thickness,
-        video: EyeVideoTracking,
+        video: 'EyeVideoTracking',
       },
     },
   },
@@ -323,7 +321,16 @@ function Video(): JSX.Element {
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h6" noWrap sx={{ flexGrow: 1, marginLeft: '20px' }} component="div">{`${id} - Blink ${blink + 1}`}</Typography>
-          <ToggleButtonGroup value={tracking} exclusive onChange={(event, newTracking) => setTracking(newTracking)} size="small">
+          <ToggleButtonGroup
+            value={tracking}
+            exclusive
+            onChange={(event, newTracking) => {
+              if (newTracking != null) {
+                setTracking(newTracking);
+              }
+            }}
+            size="small"
+          >
             <ToggleButton value="none">No Tracking</ToggleButton>
             <ToggleButton value="opt">Optical Flow</ToggleButton>
             <ToggleButton value="ssd">Sum Squared Difference</ToggleButton>
@@ -331,7 +338,11 @@ function Video(): JSX.Element {
           <ToggleButtonGroup
             value={enhancement}
             exclusive
-            onChange={(event, newEnhancement) => setEnhancement(newEnhancement)}
+            onChange={(event, newEnhancement) => {
+              if (newEnhancement != null) {
+                setEnhancement(newEnhancement);
+              }
+            }}
             sx={{ marginLeft: '20px', merginRight: '50px' }}
             size="small"
           >
@@ -349,7 +360,6 @@ function Video(): JSX.Element {
           </IconButton>
         </Toolbar>
       </AppBar>
-      {`https://d263h71p4msg7r.cloudfront.net/blinks/${id}_blink${blink}${enhancementMap[enhancement] + trackingMap[tracking]}.mp4`}
       <video key={`https://d263h71p4msg7r.cloudfront.net/blinks/${id}_blink${blink}${enhancementMap[enhancement] + trackingMap[tracking]}.mp4`} controls>
         <source src={`https://d263h71p4msg7r.cloudfront.net/blinks/${id}_blink${blink}${enhancementMap[enhancement] + trackingMap[tracking]}.mp4`} type="video/mp4" />
       </video>
