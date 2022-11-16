@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Easytear</title>
+
+    <meta name="author" content="Charlie Shou">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Tracking the Dynamics of the Tear Film Lipid Layer</h1>
+        <h3>Tejasvi Kothapalli, Charlie Shou, Jennifer Ding, Peter Wang, Tatyana Svitova, Andrew D. Graham, Stella Yu, Meng Lin</h3>
+        <h4>University of California, Berkeley</h4>
+        <h4>36th Conference on Neural Information Processing Systems (NeurIPS 2022)</h4>
+      </div>
+      <center>
+        <img src="./blinking.gif">
+      </center>
+      <div class="main">
+        <div>
+            <h2>Abstract</h2>
+            <p>Dry Eye Disease (DED) is one of the most common ocular diseases: over five
+                percent of US adults suffer from DED [4]. Tear film instability is a known factor
+                for DED, and is thought to be regulated in large part by the thin lipid layer that
+                covers and stabilizes the tear film. In order to aid eye related disease diagnosis,
+                this work proposes a novel paradigm in using computer vision techniques to
+                numerically analyze the tear film lipid layer (TFLL) spread. Eleven videos of the
+                tear film lipid layer spread are collected with a micro-interferometer and a subset
+                are annotated. A tracking algorithm relying on various pillar computer vision
+                techniques is developed.</p>
+        </div>
+        <div>
+            <h2>Blink Detection</h2>
+            <center>
+                <img src="./blink_detection.png" style="height: 80%; width: 80%;">
+            </center>
+        </div>
+        <div>
+            <h2>Video Stabilization</h2>
+            <center>
+                <img src="./video_stabilization.gif">
+            </center>
+        </div>
+        <div>
+            <h2>Iris Segmentation</h2>
+            <center>
+                <img src="./iris_segmentation.png">
+            </center>
+        </div>
+        <div>
+            <h2>Lipid Layer Visual Enhancement</h2>
+            <center>
+                <img src="./enhancement.gif" style="height: 80%; width: 80%;">
+            </center>
+        </div>
+        <div>
+            <h2>Optical Flow</h2>
+            <center>
+                <img src="./tracking.gif">
+            </center>
+        </div>
+        <div>
+            <h2>Citation</h2>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <style>
+    .container {
+        max-width: 1000px;
+        width: auto;
+        margin: 0 auto;
+    }
+    .header {
+        text-align: center;
+        margin: 2em 2em 0.5em 2em;
+        line-height: 130%;
+        padding: 0.5em 0;
+    }
+    .main {
+        text-align: center;
+        margin: 2em 2em 0.5em 2em;
+    }
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 100;
+    }
+    h1, h2, h3 {
+        font-weight: 200;
+    }
+  </style>
+</html>
